@@ -40,7 +40,7 @@ class WeatherModel {
 
   factory WeatherModel.fromMap(Map<String, dynamic> map) {
     log(map.toString(), name: 'WeatherModel');
-    
+
     return WeatherModel(
       id: map['id'] as int,
       main: map['main'] as String,
@@ -74,42 +74,3 @@ class WeatherModel {
     return id.hashCode ^ main.hashCode ^ description.hashCode ^ icon.hashCode;
   }
 }
-
-
-/*
-import 'dart:convert';
-
-class WeatherModel {
-  final int id;
-  final String main;
-  final String description;
-  final String icon;
-
-  WeatherModel({
-    required this.id,
-    required this.main,
-    required this.description,
-    required this.icon,
-  });
-
-  factory WeatherModel.fromRawJson(String str) =>
-      WeatherModel.fromJson(json.decode(str));
-
-  String toRawJson() => json.encode(toJson());
-
-  factory WeatherModel.fromJson(Map<String, dynamic> json) => WeatherModel(
-        id: json["id"],
-        main: json["main"],
-        description: json["description"],
-        icon: json["icon"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "main": main,
-        "description": description,
-        "icon": icon,
-      };
-}
-
-*/

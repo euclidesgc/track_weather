@@ -25,7 +25,7 @@ class RainModel {
 
   factory RainModel.fromMap(Map<String, dynamic> map) {
     log(map.toString(), name: 'RainModel');
-    
+
     return RainModel(
       the3H: map['the3H'] as double,
     );
@@ -49,29 +49,3 @@ class RainModel {
   @override
   int get hashCode => the3H.hashCode;
 }
-
-/*
-import 'dart:convert';
-
-class RainModel {
-  final double the3H;
-
-  RainModel({
-    required this.the3H,
-  });
-
-  factory RainModel.fromRawJson(String str) =>
-      RainModel.fromJson(json.decode(str));
-
-  String toRawJson() => json.encode(toJson());
-
-  factory RainModel.fromJson(Map<String, dynamic> json) => RainModel(
-        the3H: json["3h"]?.toDouble(),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "3h": the3H,
-      };
-}
-
-*/

@@ -35,7 +35,7 @@ class SysModel {
 
   factory SysModel.fromMap(Map<String, dynamic> map) {
     log(map.toString(), name: 'SysModel');
-    
+
     return SysModel(
       country: map['country'] as String,
       sunrise: map['sunrise'] as int,
@@ -64,38 +64,3 @@ class SysModel {
   @override
   int get hashCode => country.hashCode ^ sunrise.hashCode ^ sunset.hashCode;
 }
-
-
-/*
-import 'dart:convert';
-
-class SysModel {
-  final String country;
-  final int sunrise;
-  final int sunset;
-
-  SysModel({
-    required this.country,
-    required this.sunrise,
-    required this.sunset,
-  });
-
-  factory SysModel.fromRawJson(String str) =>
-      SysModel.fromJson(json.decode(str));
-
-  String toRawJson() => json.encode(toJson());
-
-  factory SysModel.fromJson(Map<String, dynamic> json) => SysModel(
-        country: json["country"],
-        sunrise: json["sunrise"],
-        sunset: json["sunset"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "country": country,
-        "sunrise": sunrise,
-        "sunset": sunset,
-      };
-}
-
-*/

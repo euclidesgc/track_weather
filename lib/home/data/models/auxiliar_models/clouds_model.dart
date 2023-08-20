@@ -48,30 +48,3 @@ class CloudsModel {
   @override
   int get hashCode => all.hashCode;
 }
-
-
-/*
-import 'dart:convert';
-
-class CloudsModel {
-  final int all;
-
-  CloudsModel({
-    required this.all,
-  });
-
-  factory CloudsModel.fromRawJson(String str) =>
-      CloudsModel.fromJson(json.decode(str));
-
-  String toRawJson() => json.encode(toJson());
-
-  factory CloudsModel.fromJson(Map<String, dynamic> json) => CloudsModel(
-        all: json["all"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "all": all,
-      };
-}
-
-*/

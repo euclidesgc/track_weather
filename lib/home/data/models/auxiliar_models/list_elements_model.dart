@@ -71,13 +71,17 @@ class ListElementModel {
     log(map.toString(), name: 'ListElementModel');
     return ListElementModel(
       dt: map['dt'] as int,
-      main: MainModel.fromMap(map['main'] as Map<String,dynamic>),
-      weather: List<WeatherModel>.from((map['weather'] as List<int>).map<WeatherModel>((x) => WeatherModel.fromMap(x as Map<String,dynamic>),),),
-      clouds: CloudsModel.fromMap(map['clouds'] as Map<String,dynamic>),
-      wind: WindModel.fromMap(map['wind'] as Map<String,dynamic>),
+      main: MainModel.fromMap(map['main'] as Map<String, dynamic>),
+      weather: List<WeatherModel>.from(
+        (map['weather'] as List<int>).map<WeatherModel>(
+          (x) => WeatherModel.fromMap(x as Map<String, dynamic>),
+        ),
+      ),
+      clouds: CloudsModel.fromMap(map['clouds'] as Map<String, dynamic>),
+      wind: WindModel.fromMap(map['wind'] as Map<String, dynamic>),
       visibility: map['visibility'] as int,
       pop: map['pop'] as double,
-      rain: RainModel.fromMap(map['rain'] as Map<String,dynamic>),
+      rain: RainModel.fromMap(map['rain'] as Map<String, dynamic>),
       dtTxt: DateTime.fromMillisecondsSinceEpoch(map['dtTxt'] as int),
     );
   }
@@ -120,65 +124,3 @@ class ListElementModel {
         dtTxt.hashCode;
   }
 }
-
-/*
-import 'dart:convert';
-
-import 'auxiliar_models.dart';
-
-class ListElementModel {
-  final int dt;
-  final MainModel main;
-  final List<WeatherModel> weather;
-  final CloudsModel clouds;
-  final WindModel wind;
-  final int visibility;
-  final double pop;
-  final RainModel rain;
-  final DateTime dtTxt;
-
-  ListElementModel({
-    required this.dt,
-    required this.main,
-    required this.weather,
-    required this.clouds,
-    required this.wind,
-    required this.visibility,
-    required this.pop,
-    required this.rain,
-    required this.dtTxt,
-  });
-
-  factory ListElementModel.fromRawJson(String str) =>
-      ListElementModel.fromJson(json.decode(str));
-
-  String toRawJson() => json.encode(toJson());
-
-  factory ListElementModel.fromJson(Map<String, dynamic> json) =>
-      ListElementModel(
-        dt: json["dt"],
-        main: MainModel.fromJson(json["main"]),
-        weather: List<WeatherModel>.from(
-            json["weather"].map((x) => WeatherModel.fromJson(x))),
-        clouds: CloudsModel.fromJson(json["clouds"]),
-        wind: WindModel.fromJson(json["wind"]),
-        visibility: json["visibility"],
-        pop: json["pop"]?.toDouble(),
-        rain: RainModel.fromJson(json["rain"]),
-        dtTxt: DateTime.parse(json["dt_txt"]),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "dt": dt,
-        "main": main.toJson(),
-        "weather": List<dynamic>.from(weather.map((x) => x.toJson())),
-        "clouds": clouds.toJson(),
-        "wind": wind.toJson(),
-        "visibility": visibility,
-        "pop": pop,
-        "rain": rain.toJson(),
-        "dt_txt": dtTxt.toIso8601String(),
-      };
-}
-
-*/
