@@ -1,6 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
-import 'dart:developer';
 
 class RainModel {
   final double the3H;
@@ -24,8 +23,6 @@ class RainModel {
   }
 
   factory RainModel.fromMap(Map<String, dynamic> map) {
-    log(map.toString(), name: 'RainModel');
-
     return RainModel(
       the3H: map['the3H'] as double,
     );

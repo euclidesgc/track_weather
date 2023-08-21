@@ -1,6 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
-import 'dart:developer';
 
 class WeatherModel {
   final int id;
@@ -39,8 +38,6 @@ class WeatherModel {
   }
 
   factory WeatherModel.fromMap(Map<String, dynamic> map) {
-    log(map.toString(), name: 'WeatherModel');
-
     return WeatherModel(
       id: map['id'] as int,
       main: map['main'] as String,

@@ -1,6 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
-import 'dart:developer';
 
 class WindModel {
   final double speed;
@@ -26,8 +25,6 @@ class WindModel {
   }
 
   factory WindModel.fromMap(Map<String, dynamic> map) {
-    log(map.toString(), name: 'WindModel');
-
     return WindModel(
       speed: map['speed'] as double,
     );

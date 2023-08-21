@@ -88,7 +88,6 @@ class CurrentWeatherModel {
   }
 
   factory CurrentWeatherModel.fromMap(Map<String, dynamic> map) {
-    log(map.toString(), name: 'CurrentWeatherModel');
     return CurrentWeatherModel(
       coord: CoordModel.fromMap(map['coord'] as Map<String, dynamic>),
       weather: List<WeatherModel>.from(

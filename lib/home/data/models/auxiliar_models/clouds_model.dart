@@ -1,6 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
-import 'dart:developer';
 
 class CloudsModel {
   final int all;
@@ -24,7 +23,6 @@ class CloudsModel {
   }
 
   factory CloudsModel.fromMap(Map<String, dynamic> map) {
-    log(map.toString(), name: 'CloudsModel');
     return CloudsModel(
       all: map['all'] as int,
     );

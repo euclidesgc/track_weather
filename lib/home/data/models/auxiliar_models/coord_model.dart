@@ -1,6 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
-import 'dart:developer';
 
 class CoordModel {
   final double lon;
@@ -29,7 +28,6 @@ class CoordModel {
   }
 
   factory CoordModel.fromMap(Map<String, dynamic> map) {
-    log(map.toString(), name: 'CoordModel');
     return CoordModel(
       lon: map['lon'] as double,
       lat: map['lat'] as double,

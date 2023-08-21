@@ -1,6 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:flutter/foundation.dart';
 
@@ -68,7 +67,6 @@ class ListElementModel {
   }
 
   factory ListElementModel.fromMap(Map<String, dynamic> map) {
-    log(map.toString(), name: 'ListElementModel');
     return ListElementModel(
       dt: map['dt'] as int,
       main: MainModel.fromMap(map['main'] as Map<String, dynamic>),

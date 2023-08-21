@@ -1,6 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:flutter/foundation.dart';
 
@@ -48,7 +47,6 @@ class ForecastWeatherModel {
   }
 
   factory ForecastWeatherModel.fromMap(Map<String, dynamic> map) {
-    log(map.toString(), name: 'ForecastWeatherModel');
     return ForecastWeatherModel(
       cod: map['cod'] as String,
       message: map['message'] as int,

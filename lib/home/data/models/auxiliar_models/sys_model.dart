@@ -1,6 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
-import 'dart:developer';
 
 class SysModel {
   final String country;
@@ -34,8 +33,6 @@ class SysModel {
   }
 
   factory SysModel.fromMap(Map<String, dynamic> map) {
-    log(map.toString(), name: 'SysModel');
-
     return SysModel(
       country: map['country'] as String,
       sunrise: map['sunrise'] as int,
