@@ -50,12 +50,12 @@ class MainModel {
 
   factory MainModel.fromMap(Map<String, dynamic> map) {
     return MainModel(
-      temp: map['temp'] as double,
-      feelsLike: map['feels_like'] as double,
-      tempMin: map['temp_min'] as double,
-      tempMax: map['temp_max'] as double,
-      pressure: map['pressure'] as int,
-      humidity: map['humidity'] as int,
+      temp: map['temp'] == null ? 0.0 : map['temp'] * 1.0,
+      feelsLike: map['feels_like'] == null ? 0.0 : map['feels_like'] * 1.0,
+      tempMin: map['temp_min'] == null ? 0.0 : map['temp_min'] * 1.0,
+      tempMax: map['temp_max'] == null ? 0.0 : map['temp_max'] * 1.0,
+      pressure: map['pressure'] == null ? 0 : map['pressure'] * 1,
+      humidity: map['humidity'] == null ? 0 : map['humidity'] * 1,
     );
   }
 

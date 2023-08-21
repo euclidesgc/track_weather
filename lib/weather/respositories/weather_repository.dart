@@ -6,7 +6,7 @@ abstract interface class WeatherRepository {
     required double lon,
   });
 
-  Future<WeatherEntity> getForecastWeather({
+  Future<List<WeatherEntity>> getForecastWeather({
     required double lat,
     required double lon,
   });

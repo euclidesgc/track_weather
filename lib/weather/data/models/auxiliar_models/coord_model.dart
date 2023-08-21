@@ -28,8 +28,8 @@ class CoordModel {
 
   factory CoordModel.fromMap(Map<String, dynamic> map) {
     return CoordModel(
-      lon: map['lon'] as double,
-      lat: map['lat'] as double,
+      lon: map['lon'] == null ? 0.0 : map['lon'] * 1.0,
+      lat: map['lat'] == null ? 0.0 : map['lat'] * 1.0,
     );
   }
 

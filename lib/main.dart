@@ -2,8 +2,10 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:track_weather/weather/data/repositories/weather_repository_impl.dart';
 import 'package:track_weather/weather/domain/usecases/get_current_weather_usecase.dart';
+import 'package:track_weather/weather/presentation/forecast_weather/forecast_weather_controller.dart';
 
 import 'weather/data/datasources/weather_datasource_impl.dart';
+import 'weather/domain/usecases/get_forecast_weather_usecase.dart';
 import 'weather/presentation/current_weather/current_weather_controller.dart';
 import 'weather/presentation/current_weather/current_weather_page.dart';
 import 'weather/presentation/forecast_weather/forecast_weather_page.dart';
@@ -47,7 +49,15 @@ class MainApp extends StatelessWidget {
                 ),
               ),
             ),
-        '/forecast_weather': (context) => const ForecastWeatherPage(),
+        '/forecast_weather': (context) => ForecastWeatherPage(
+                controller: ForecastWeatherController(
+                    usecase: GetForecastWeatherUsecase(
+              repository: WeatherRepositoryImpl(
+                datasource: WeatherDatasourceImpl(
+                  client: Dio(),
+                ),
+              ),
+            ))),
       },
     );
   }

@@ -38,10 +38,11 @@ class WeatherModel {
 
   factory WeatherModel.fromMap(Map<String, dynamic> map) {
     return WeatherModel(
-      id: map['id'] as int,
-      main: map['main'] as String,
-      description: map['description'] as String,
-      icon: map['icon'] as String,
+      id: map['id'] == null ? 0 : map['id'] * 1,
+      main: map['main'] == null ? '' : map['main'] as String,
+      description:
+          map['description'] == null ? '' : map['description'] as String,
+      icon: map['icon'] == null ? '' : map['icon'] as String,
     );
   }
 

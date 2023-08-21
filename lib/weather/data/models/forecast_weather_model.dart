@@ -8,14 +8,14 @@ class ForecastWeatherModel {
   final String cod;
   final int message;
   final int cnt;
-  final List<ElementModel> list;
+  final List<ElementModel> elements;
   final CityModel city;
 
   ForecastWeatherModel({
     required this.cod,
     required this.message,
     required this.cnt,
-    required this.list,
+    required this.elements,
     required this.city,
   });
 
@@ -30,7 +30,7 @@ class ForecastWeatherModel {
       cod: cod ?? this.cod,
       message: message ?? this.message,
       cnt: cnt ?? this.cnt,
-      list: list ?? this.list,
+      elements: list ?? elements,
       city: city ?? this.city,
     );
   }
@@ -40,7 +40,7 @@ class ForecastWeatherModel {
       'cod': cod,
       'message': message,
       'cnt': cnt,
-      'list': list.map((x) => x.toMap()).toList(),
+      'list': elements.map((x) => x.toMap()).toList(),
       'city': city.toMap(),
     };
   }
@@ -50,7 +50,7 @@ class ForecastWeatherModel {
       cod: map['cod'] as String,
       message: map['message'] as int,
       cnt: map['cnt'] as int,
-      list: List<ElementModel>.from(
+      elements: List<ElementModel>.from(
         (map['list'] as List<int>).map<ElementModel>(
           (x) => ElementModel.fromMap(x as Map<String, dynamic>),
         ),
@@ -66,7 +66,7 @@ class ForecastWeatherModel {
 
   @override
   String toString() {
-    return 'ForecastWeatherModel(cod: $cod, message: $message, cnt: $cnt, list: $list, city: $city)';
+    return 'ForecastWeatherModel(cod: $cod, message: $message, cnt: $cnt, list: $elements, city: $city)';
   }
 
   @override
@@ -76,7 +76,7 @@ class ForecastWeatherModel {
     return other.cod == cod &&
         other.message == message &&
         other.cnt == cnt &&
-        listEquals(other.list, list) &&
+        listEquals(other.elements, elements) &&
         other.city == city;
   }
 
@@ -85,7 +85,7 @@ class ForecastWeatherModel {
     return cod.hashCode ^
         message.hashCode ^
         cnt.hashCode ^
-        list.hashCode ^
+        elements.hashCode ^
         city.hashCode;
   }
 }

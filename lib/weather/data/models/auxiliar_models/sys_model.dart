@@ -33,9 +33,9 @@ class SysModel {
 
   factory SysModel.fromMap(Map<String, dynamic> map) {
     return SysModel(
-      country: map['country'] as String,
-      sunrise: map['sunrise'] as int,
-      sunset: map['sunset'] as int,
+      country: map['country'] == null ? '' : map['country'] as String,
+      sunrise: map['sunrise'] == null ? 0 : map['sunrise'] * 1,
+      sunset: map['sunset'] == null ? 0 : map['sunset'] * 1,
     );
   }
 

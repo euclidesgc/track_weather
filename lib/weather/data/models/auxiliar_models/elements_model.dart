@@ -67,7 +67,7 @@ class ElementModel {
 
   factory ElementModel.fromMap(Map<String, dynamic> map) {
     return ElementModel(
-      dt: map['dt'] as int,
+      dt: map['dt'] == null ? 0 : map['dt'] * 1,
       main: MainModel.fromMap(map['main'] as Map<String, dynamic>),
       weather: List<WeatherModel>.from(
         (map['weather'] as List<int>).map<WeatherModel>(
@@ -76,10 +76,11 @@ class ElementModel {
       ),
       clouds: CloudsModel.fromMap(map['clouds'] as Map<String, dynamic>),
       wind: WindModel.fromMap(map['wind'] as Map<String, dynamic>),
-      visibility: map['visibility'] as int,
-      pop: map['pop'] as double,
+      visibility: map['visibility'] == null ? 0 : map['visibility'] * 1,
+      pop: map['pop'] == null ? 0.0 : map['pop'] * 1.0,
       rain: RainModel.fromMap(map['rain'] as Map<String, dynamic>),
-      dtTxt: DateTime.fromMillisecondsSinceEpoch(map['dtTxt'] as int),
+      dtTxt: DateTime.fromMillisecondsSinceEpoch(
+          map['dtTxt'] == null ? 0 : map['dtTxt'] * 1),
     );
   }
 

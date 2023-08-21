@@ -23,7 +23,7 @@ class CloudsModel {
 
   factory CloudsModel.fromMap(Map<String, dynamic> map) {
     return CloudsModel(
-      all: map['all'] as int,
+      all: map['all'] == null ? 0 : map['all'] * 1,
     );
   }
 

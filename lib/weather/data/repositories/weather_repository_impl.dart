@@ -40,11 +40,39 @@ class WeatherRepositoryImpl implements WeatherRepository {
   }
 
   @override
-  Future<WeatherEntity> getForecastWeather({
+  Future<List<WeatherEntity>> getForecastWeather({
     required double lat,
     required double lon,
-  }) {
-    // TODO: implement getForecastWeather
-    throw UnimplementedError();
+  }) async {
+    final forecastWeatherModel =
+        await datasource.getForecastWeather(lat: lat, lon: lon);
+
+    List<WeatherEntity> list = [];
+
+    for (var element in forecastWeatherModel.elements) {
+      final weatherEntity = WeatherEntity(
+        location: LocationEntity(
+          name:
+              '${forecastWeatherModel.city.name}, ${forecastWeatherModel.city.country}}',
+          lat: forecastWeatherModel.city.coord.lat,
+          lon: forecastWeatherModel.city.coord.lon,
+        ),
+        weather: element.weather[0].main,
+        time: Utils.convertTimestampToDateString(element.dt),
+        description: element.weather[0].description,
+        icon: element.weather[0].icon,
+        temp: element.main.temp,
+        feelsLike: element.main.feelsLike,
+        tempMin: element.main.tempMin,
+        tempMax: element.main.tempMax,
+        pressure: element.main.pressure,
+        humidity: element.main.humidity,
+        wind: element.wind.speed,
+      );
+
+      list.add(weatherEntity);
+    }
+
+    return list;
   }
 }
