@@ -39,7 +39,12 @@ class _ForecastWeatherPageState extends State<ForecastWeatherPage> {
           width: MediaQuery.of(context).size.width,
           padding: const EdgeInsets.all(10),
           child: RefreshIndicator(
-            onRefresh: () async {},
+            onRefresh: () async {
+              widget.controller.getForecastWeather(
+                weather.location.lat,
+                weather.location.lon,
+              );
+            },
             child: ListView.builder(
               itemCount: widget.controller.forecastList.value.length,
               itemBuilder: (context, index) {
