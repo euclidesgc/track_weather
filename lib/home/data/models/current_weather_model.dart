@@ -1,6 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:flutter/foundation.dart';
 
@@ -155,82 +153,3 @@ class CurrentWeatherModel {
         cod.hashCode;
   }
 }
-
-
-/*
-import 'dart:convert';
-
-import 'auxiliar_models/auxiliar_models.dart';
-
-class CurrentWeatherModel {
-  final CoordModel coord;
-  final List<WeatherModel> weather;
-  final String base;
-  final MainModel main;
-  final int visibility;
-  final WindModel wind;
-  final CloudsModel clouds;
-  final int dt;
-  final SysModel sys;
-  final int timezone;
-  final int id;
-  final String name;
-  final int cod;
-
-  CurrentWeatherModel({
-    required this.coord,
-    required this.weather,
-    required this.base,
-    required this.main,
-    required this.visibility,
-    required this.wind,
-    required this.clouds,
-    required this.dt,
-    required this.sys,
-    required this.timezone,
-    required this.id,
-    required this.name,
-    required this.cod,
-  });
-
-  factory CurrentWeatherModel.fromRawJson(String str) =>
-      CurrentWeatherModel.fromJson(json.decode(str));
-
-  String toRawJson() => json.encode(toJson());
-
-  factory CurrentWeatherModel.fromJson(Map<String, dynamic> json) =>
-      CurrentWeatherModel(
-        coord: CoordModel.fromJson(json["coord"]),
-        weather: List<WeatherModel>.from(
-            json["weather"].map((x) => WeatherModel.fromJson(x))),
-        base: json["base"],
-        main: MainModel.fromJson(json["main"]),
-        visibility: json["visibility"],
-        wind: WindModel.fromJson(json["wind"]),
-        clouds: CloudsModel.fromJson(json["clouds"]),
-        dt: json["dt"],
-        sys: SysModel.fromJson(json["sys"]),
-        timezone: json["timezone"],
-        id: json["id"],
-        name: json["name"],
-        cod: json["cod"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "coord": coord.toJson(),
-        "weather": List<dynamic>.from(weather.map((x) => x.toJson())),
-        "base": base,
-        "main": main.toJson(),
-        "visibility": visibility,
-        "wind": wind.toJson(),
-        "clouds": clouds.toJson(),
-        "dt": dt,
-        "sys": sys.toJson(),
-        "timezone": timezone,
-        "id": id,
-        "name": name,
-        "cod": cod,
-      };
-}
-
-*/

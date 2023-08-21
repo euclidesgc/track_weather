@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
@@ -90,50 +89,3 @@ class ForecastWeatherModel {
         city.hashCode;
   }
 }
-
-
-/*
-import 'dart:convert';
-
-import 'auxiliar_models/auxiliar_models.dart';
-
-class ForecastWeatherModel {
-  final String cod;
-  final int message;
-  final int cnt;
-  final List<ListElementModel> list;
-  final CityModel city;
-
-  ForecastWeatherModel({
-    required this.cod,
-    required this.message,
-    required this.cnt,
-    required this.list,
-    required this.city,
-  });
-
-  factory ForecastWeatherModel.fromRawJson(String str) =>
-      ForecastWeatherModel.fromJson(json.decode(str));
-
-  String toRawJson() => json.encode(toJson());
-
-  factory ForecastWeatherModel.fromJson(Map<String, dynamic> json) =>
-      ForecastWeatherModel(
-        cod: json["cod"],
-        message: json["message"],
-        cnt: json["cnt"],
-        list: List<ListElementModel>.from(
-            json["list"].map((x) => ListElementModel.fromJson(x))),
-        city: CityModel.fromJson(json["city"]),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "cod": cod,
-        "message": message,
-        "cnt": cnt,
-        "list": List<dynamic>.from(list.map((x) => x.toJson())),
-        "city": city.toJson(),
-      };
-}
-
-*/

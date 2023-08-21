@@ -95,7 +95,7 @@ class HomeController {
             location.location.lon,
           );
           return WeatherEntity(
-            location: location.location, // Mantém a localização original
+            location: location.location,
             description: weather.description,
             weather: weather.weather,
             icon: weather.icon,
@@ -110,6 +110,6 @@ class HomeController {
         },
       ),
     );
-    locationsList.value = updatedList; // Atualiza a lista no ValueNotifier
+    locationsList.value = updatedList;
   }
 }
