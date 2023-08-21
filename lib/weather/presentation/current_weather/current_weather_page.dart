@@ -103,9 +103,19 @@ class _CurrentWeatherPageState extends State<CurrentWeatherPage> {
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                  '${weather.location.name} (${weather.time})'),
-                              Text(weather.temp.toStringAsFixed(2)),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(weather.location.name,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleLarge),
+                                  Text(weather.time),
+                                ],
+                              ),
+                              Text('${weather.temp.toStringAsFixed(2)}º',
+                                  style:
+                                      Theme.of(context).textTheme.titleLarge),
                               CachedNetworkImage(
                                 imageUrl:
                                     'http://openweathermap.org/img/w/${weather.icon}.png',
@@ -116,15 +126,27 @@ class _CurrentWeatherPageState extends State<CurrentWeatherPage> {
                               ),
                             ],
                           ),
-                          subtitle: Wrap(
-                            alignment: WrapAlignment.spaceBetween,
+                          subtitle: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text('Min: ${weather.tempMin} '),
-                              Text('Max: ${weather.tempMax} '),
-                              Text('Feels like: ${weather.feelsLike} \n'),
-                              Text('Pressure: ${weather.pressure} '),
-                              Text('humidity: ${weather.humidity} '),
-                              Text('Wind speed: ${weather.wind}'),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text('Min: ${weather.tempMin}º '),
+                                  Text('Max: ${weather.tempMax}º '),
+                                  Text('Feels like: ${weather.feelsLike}º'),
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text('\nPressure: ${weather.pressure} hPa'),
+                                  Text('humidity: ${weather.humidity}% '),
+                                  Text('Wind speed: ${weather.wind} m/s'),
+                                ],
+                              ),
                             ],
                           ),
                         ),

@@ -19,6 +19,22 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       initialRoute: '/home',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        textTheme: const TextTheme(
+          titleLarge: TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.bold,
+          ),
+          titleMedium: TextStyle(
+            fontSize: 12,
+            fontWeight: FontWeight.w400,
+          ),
+          bodyMedium: TextStyle(
+            fontSize: 10,
+          ),
+        ),
+      ),
       routes: {
         '/home': (context) => CurrentWeatherPage(
               controller: CurrentWeatherController(
