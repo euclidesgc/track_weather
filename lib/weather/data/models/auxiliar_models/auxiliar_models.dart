@@ -1,7 +1,7 @@
 export 'city_model.dart';
 export 'clouds_model.dart';
 export 'coord_model.dart';
-export 'list_elements_model.dart';
+export 'elements_model.dart';
 export 'main_model.dart';
 export 'rain_model.dart';
 export 'sys_model.dart';

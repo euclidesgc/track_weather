@@ -1,13 +1,13 @@
 import 'package:flutter/foundation.dart';
-import 'package:track_weather/home/domain/usecases/get_current_weather_usecase.dart';
+import 'package:track_weather/weather/domain/usecases/get_current_weather_usecase.dart';
 
-import '../domain/entities/location_entity.dart';
-import '../domain/entities/weather_entity.dart';
+import '../../domain/entities/location_entity.dart';
+import '../../domain/entities/weather_entity.dart';
 
-class HomeController {
+class CurrentWeatherController {
   final GetCurrentWeatherUsecase usecase;
 
-  HomeController({required this.usecase});
+  CurrentWeatherController({required this.usecase});
 
   ValueNotifier<List<WeatherEntity>> locationsList =
       ValueNotifier<List<WeatherEntity>>([
@@ -18,6 +18,8 @@ class HomeController {
         lon: -1.1238033699862602,
       ),
       description: 'moderate rain',
+      pressure: 1015,
+      time: '0:00',
       weather: 'Rain',
       icon: '10d',
       temp: 298.48,
@@ -26,7 +28,6 @@ class HomeController {
       feelsLike: 298.74,
       humidity: 64,
       wind: 0.62,
-      pressure: 1015,
     ),
     WeatherEntity(
       location: LocationEntity(
@@ -36,6 +37,7 @@ class HomeController {
       ),
       description: 'moderate rain',
       weather: 'Rain',
+      time: '0:00',
       icon: '10d',
       temp: 298.48,
       tempMin: 297.56,
@@ -53,6 +55,7 @@ class HomeController {
       ),
       description: 'moderate rain',
       weather: 'Rain',
+      time: '0:00',
       icon: '10d',
       temp: 298.48,
       tempMin: 297.56,
@@ -70,6 +73,7 @@ class HomeController {
       ),
       description: 'moderate rain',
       weather: 'Rain',
+      time: '0:00',
       icon: '10d',
       temp: 298.48,
       tempMin: 297.56,
@@ -98,6 +102,7 @@ class HomeController {
             location: location.location,
             description: weather.description,
             weather: weather.weather,
+            time: weather.time,
             icon: weather.icon,
             temp: weather.temp,
             tempMin: weather.tempMin,

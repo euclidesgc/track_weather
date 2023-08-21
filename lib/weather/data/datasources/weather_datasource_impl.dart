@@ -1,8 +1,8 @@
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
-import 'package:track_weather/home/data/models/current_weather_model.dart';
-import 'package:track_weather/home/data/models/forecast_weather_model.dart';
+import 'package:track_weather/weather/data/models/current_weather_model.dart';
+import 'package:track_weather/weather/data/models/forecast_weather_model.dart';
 
 import '../urls.dart';
 import 'weather_datasource.dart';
@@ -21,8 +21,7 @@ class WeatherDatasourceImpl implements WeatherDatasource {
     try {
       final response = await client.get(url);
 
-      final result = CurrentWeatherModel.fromMap(response.data);
-      return result;
+      return CurrentWeatherModel.fromMap(response.data);
     } on DioException catch (e) {
       if (e.response != null) {
         if (e.response!.statusCode == 400) {
@@ -54,7 +53,7 @@ class WeatherDatasourceImpl implements WeatherDatasource {
     try {
       final response = await client.get(url);
 
-      return ForecastWeatherModel.fromJson(response.data);
+      return ForecastWeatherModel.fromMap(response.data);
     } on DioException catch (e) {
       if (e.response != null) {
         if (e.response!.statusCode == 400) {

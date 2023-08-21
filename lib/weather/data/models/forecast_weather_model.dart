@@ -8,7 +8,7 @@ class ForecastWeatherModel {
   final String cod;
   final int message;
   final int cnt;
-  final List<ListElementModel> list;
+  final List<ElementModel> list;
   final CityModel city;
 
   ForecastWeatherModel({
@@ -23,7 +23,7 @@ class ForecastWeatherModel {
     String? cod,
     int? message,
     int? cnt,
-    List<ListElementModel>? list,
+    List<ElementModel>? list,
     CityModel? city,
   }) {
     return ForecastWeatherModel(
@@ -50,9 +50,9 @@ class ForecastWeatherModel {
       cod: map['cod'] as String,
       message: map['message'] as int,
       cnt: map['cnt'] as int,
-      list: List<ListElementModel>.from(
-        (map['list'] as List<int>).map<ListElementModel>(
-          (x) => ListElementModel.fromMap(x as Map<String, dynamic>),
+      list: List<ElementModel>.from(
+        (map['list'] as List<int>).map<ElementModel>(
+          (x) => ElementModel.fromMap(x as Map<String, dynamic>),
         ),
       ),
       city: CityModel.fromMap(map['city'] as Map<String, dynamic>),

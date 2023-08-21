@@ -1,4 +1,4 @@
-import 'package:track_weather/home/data/models/current_weather_model.dart';
+import 'package:track_weather/weather/data/models/current_weather_model.dart';
 
 import '../models/forecast_weather_model.dart';
 

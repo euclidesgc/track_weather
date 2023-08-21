@@ -1,5 +1,6 @@
-import 'package:track_weather/home/data/datasources/weather_datasource.dart';
-import 'package:track_weather/home/domain/entities/weather_entity.dart';
+import 'package:track_weather/weather/data/datasources/weather_datasource.dart';
+import 'package:track_weather/weather/domain/entities/weather_entity.dart';
+import 'package:track_weather/weather/utils/utils.dart';
 
 import '../../domain/entities/location_entity.dart';
 import '../../respositories/weather_repository.dart';
@@ -23,6 +24,7 @@ class WeatherRepositoryImpl implements WeatherRepository {
         lon: weatherModel.coord.lon,
       ),
       weather: weatherModel.weather[0].main,
+      time: Utils.convertTimestampToDateString(weatherModel.dt),
       description: weatherModel.weather[0].description,
       icon: weatherModel.weather[0].icon,
       temp: weatherModel.main.temp,

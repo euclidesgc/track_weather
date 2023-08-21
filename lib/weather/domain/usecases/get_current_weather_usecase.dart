@@ -1,4 +1,4 @@
-import 'package:track_weather/home/domain/entities/weather_entity.dart';
+import 'package:track_weather/weather/domain/entities/weather_entity.dart';
 
 import '../../respositories/weather_repository.dart';
 

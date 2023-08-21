@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 
 import 'auxiliar_models.dart';
 
-class ListElementModel {
+class ElementModel {
   final int dt;
   final MainModel main;
   final List<WeatherModel> weather;
@@ -15,7 +15,7 @@ class ListElementModel {
   final RainModel rain;
   final DateTime dtTxt;
 
-  ListElementModel({
+  ElementModel({
     required this.dt,
     required this.main,
     required this.weather,
@@ -27,7 +27,7 @@ class ListElementModel {
     required this.dtTxt,
   });
 
-  ListElementModel copyWith({
+  ElementModel copyWith({
     int? dt,
     MainModel? main,
     List<WeatherModel>? weather,
@@ -38,7 +38,7 @@ class ListElementModel {
     RainModel? rain,
     DateTime? dtTxt,
   }) {
-    return ListElementModel(
+    return ElementModel(
       dt: dt ?? this.dt,
       main: main ?? this.main,
       weather: weather ?? this.weather,
@@ -65,8 +65,8 @@ class ListElementModel {
     };
   }
 
-  factory ListElementModel.fromMap(Map<String, dynamic> map) {
-    return ListElementModel(
+  factory ElementModel.fromMap(Map<String, dynamic> map) {
+    return ElementModel(
       dt: map['dt'] as int,
       main: MainModel.fromMap(map['main'] as Map<String, dynamic>),
       weather: List<WeatherModel>.from(
@@ -85,8 +85,8 @@ class ListElementModel {
 
   String toJson() => json.encode(toMap());
 
-  factory ListElementModel.fromJson(String source) =>
-      ListElementModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory ElementModel.fromJson(String source) =>
+      ElementModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
@@ -94,7 +94,7 @@ class ListElementModel {
   }
 
   @override
-  bool operator ==(covariant ListElementModel other) {
+  bool operator ==(covariant ElementModel other) {
     if (identical(this, other)) return true;
 
     return other.dt == dt &&

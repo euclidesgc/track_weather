@@ -1,22 +1,22 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:track_weather/home/presentation/home_controller.dart';
 
-import '../domain/entities/weather_entity.dart';
+import '../../domain/entities/weather_entity.dart';
+import 'current_weather_controller.dart';
 
-class HomePage extends StatefulWidget {
-  final HomeController controller;
+class CurrentWeatherPage extends StatefulWidget {
+  final CurrentWeatherController controller;
 
-  const HomePage({
+  const CurrentWeatherPage({
     super.key,
     required this.controller,
   });
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<CurrentWeatherPage> createState() => _CurrentWeatherPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _CurrentWeatherPageState extends State<CurrentWeatherPage> {
   @override
   void initState() {
     super.initState();
@@ -103,7 +103,8 @@ class _HomePageState extends State<HomePage> {
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(weather.location.name),
+                              Text(
+                                  '${weather.location.name} (${weather.time})'),
                               Text(weather.temp.toStringAsFixed(2)),
                               CachedNetworkImage(
                                 imageUrl:
@@ -128,11 +129,10 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                         onTap: () {
-                          // navegar para a tela de detalhes
-                          // widget.controller.getForecastWeather(
-                          //   lat: locationsList[index]['lat'],
-                          //   lon: locationsList[index]['lon'],
-                          // );
+                          Navigator.of(context).pushNamed(
+                            '/forecast_weather',
+                            arguments: weather,
+                          );
                         },
                       ),
                       const SizedBox(height: 10),
