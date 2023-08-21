@@ -47,11 +47,11 @@ class ForecastWeatherModel {
 
   factory ForecastWeatherModel.fromMap(Map<String, dynamic> map) {
     return ForecastWeatherModel(
-      cod: map['cod'] as String,
-      message: map['message'] as int,
-      cnt: map['cnt'] as int,
+      cod: map['cod'] == null ? '' : map['cod'] as String,
+      message: map['message'] == null ? 0 : map['message'] * 1,
+      cnt: map['cnt'] == null ? 0 : map['cnt'] * 1,
       elements: List<ElementModel>.from(
-        (map['list'] as List<int>).map<ElementModel>(
+        (map['list'] as List<dynamic>).map<ElementModel>(
           (x) => ElementModel.fromMap(x as Map<String, dynamic>),
         ),
       ),
