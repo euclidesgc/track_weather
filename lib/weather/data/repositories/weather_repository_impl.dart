@@ -19,7 +19,7 @@ class WeatherRepositoryImpl implements WeatherRepository {
 
     final weatherEntity = WeatherEntity(
       location: LocationEntity(
-        name: '${weatherModel.name}, ${weatherModel.sys.country}}',
+        name: '${weatherModel.name}, ${weatherModel.sys.country}',
         lat: weatherModel.coord.lat,
         lon: weatherModel.coord.lon,
       ),
@@ -53,7 +53,7 @@ class WeatherRepositoryImpl implements WeatherRepository {
       final weatherEntity = WeatherEntity(
         location: LocationEntity(
           name:
-              '${forecastWeatherModel.city.name}, ${forecastWeatherModel.city.country}}',
+              '${forecastWeatherModel.city.name}, ${forecastWeatherModel.city.country}',
           lat: forecastWeatherModel.city.coord.lat,
           lon: forecastWeatherModel.city.coord.lon,
         ),
