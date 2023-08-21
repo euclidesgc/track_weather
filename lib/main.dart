@@ -1,11 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:track_weather/home/data/repositories/weather_repository_impl.dart';
-import 'package:track_weather/home/domain/usecases/get_current_weather_usecase.dart';
-import 'package:track_weather/home/presentation/home_controller.dart';
+import 'package:track_weather/weather/data/repositories/weather_repository_impl.dart';
+import 'package:track_weather/weather/domain/usecases/get_current_weather_usecase.dart';
 
-import 'home/data/datasources/weather_datasource_impl.dart';
-import 'home/presentation/home_page.dart';
+import 'weather/data/datasources/weather_datasource_impl.dart';
+import 'weather/presentation/current_weather/current_weather_controller.dart';
+import 'weather/presentation/current_weather/current_weather_page.dart';
+import 'weather/presentation/forecast_weather/forecast_weather_page.dart';
 
 void main() {
   runApp(const MainApp());
@@ -19,8 +20,8 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       initialRoute: '/home',
       routes: {
-        '/home': (context) => HomePage(
-              controller: HomeController(
+        '/home': (context) => CurrentWeatherPage(
+              controller: CurrentWeatherController(
                 usecase: GetCurrentWeatherUsecase(
                   repository: WeatherRepositoryImpl(
                     datasource: WeatherDatasourceImpl(
@@ -30,6 +31,7 @@ class MainApp extends StatelessWidget {
                 ),
               ),
             ),
+        '/forecast_weather': (context) => const ForecastWeatherPage(),
       },
     );
   }
