@@ -1,7 +1,7 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../domain/entities/weather_entity.dart';
+import '../widgets/weather_tile.dart';
 import 'current_weather_controller.dart';
 
 class CurrentWeatherPage extends StatefulWidget {
@@ -95,70 +95,14 @@ class _CurrentWeatherPageState extends State<CurrentWeatherPage> {
                           content: Text('${weather.location.name} excluído')),
                     );
                   },
-                  child: Column(
-                    children: [
-                      GestureDetector(
-                        child: ListTile(
-                          title: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(weather.location.name,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .titleLarge),
-                                  Text(weather.time),
-                                ],
-                              ),
-                              Text('${weather.temp.toStringAsFixed(2)}º',
-                                  style:
-                                      Theme.of(context).textTheme.titleLarge),
-                              CachedNetworkImage(
-                                imageUrl:
-                                    'http://openweathermap.org/img/w/${weather.icon}.png',
-                                errorWidget: (context, url, error) =>
-                                    const Icon(Icons.error),
-                                width: 50,
-                                height: 50,
-                              ),
-                            ],
-                          ),
-                          subtitle: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text('Min: ${weather.tempMin}º '),
-                                  Text('Max: ${weather.tempMax}º '),
-                                  Text('Feels like: ${weather.feelsLike}º'),
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text('\nPressure: ${weather.pressure} hPa'),
-                                  Text('humidity: ${weather.humidity}% '),
-                                  Text('Wind speed: ${weather.wind} m/s'),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                        onTap: () {
-                          Navigator.of(context).pushNamed(
-                            '/forecast_weather',
-                            arguments: weather,
-                          );
-                        },
-                      ),
-                      const SizedBox(height: 10),
-                    ],
+                  child: GestureDetector(
+                    child: WeatherTile(weather: weather),
+                    onTap: () {
+                      Navigator.of(context).pushNamed(
+                        '/forecast_weather',
+                        arguments: weather,
+                      );
+                    },
                   ),
                 );
               },
