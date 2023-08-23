@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:track_weather/weather/data/datasources/weather_datasource.dart';
 import 'package:track_weather/weather/domain/entities/weather_entity.dart';
 import 'package:track_weather/weather/utils/utils.dart';

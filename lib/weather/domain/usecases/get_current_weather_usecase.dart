@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:track_weather/weather/domain/entities/weather_entity.dart';
 

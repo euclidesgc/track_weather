@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:flutter/foundation.dart';
 import 'package:track_weather/weather/domain/usecases/get_current_weather_usecase.dart';
