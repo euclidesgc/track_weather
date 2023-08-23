@@ -37,13 +37,14 @@ class WeatherModel {
   }
 
   factory WeatherModel.fromMap(Map<String, dynamic> map) {
-    return WeatherModel(
-      id: map['id'] == null ? 0 : map['id'] * 1,
+    final model = WeatherModel(
+      id: map['id'] == null ? 0 : map['id'] * 1 as int,
       main: map['main'] == null ? '' : map['main'] as String,
       description:
           map['description'] == null ? '' : map['description'] as String,
       icon: map['icon'] == null ? '' : map['icon'] as String,
     );
+    return model;
   }
 
   String toJson() => json.encode(toMap());

@@ -3,17 +3,18 @@ import 'package:track_weather/weather/domain/entities/weather_entity.dart';
 
 import '../../respositories/weather_repository.dart';
 
-class GetCurrentWeatherUsecase {
+class GetCurrentWeatherByNameUsecase {
   final WeatherRepository repository;
 
-  GetCurrentWeatherUsecase({required this.repository});
+  GetCurrentWeatherByNameUsecase({required this.repository});
 
   Future<WeatherEntity> call({
-    required double lat,
-    required double lon,
+    required String name,
+    required String country,
   }) async {
     try {
-      return await repository.getCurrentWeather(lat: lat, lon: lon);
+      return await repository.getCurrentWeatherByName(
+          name: name, country: country);
     } catch (e) {
       rethrow;
     }

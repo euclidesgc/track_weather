@@ -12,7 +12,11 @@ class ForecastWeatherController {
       ValueNotifier<List<WeatherEntity>>([]);
 
   getForecastWeather(double lat, double lon) async {
-    final listWeather = await usecase.call(lat: lat, lon: lon);
-    forecastList.value = listWeather;
+    try {
+      final listWeather = await usecase.call(lat: lat, lon: lon);
+      forecastList.value = listWeather;
+    } catch (e) {
+      rethrow;
+    }
   }
 }

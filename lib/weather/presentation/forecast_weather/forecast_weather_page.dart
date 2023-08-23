@@ -1,62 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:track_weather/weather/domain/entities/weather_entity.dart';
 import 'package:track_weather/weather/presentation/forecast_weather/forecast_weather_controller.dart';
-import 'package:track_weather/weather/presentation/widgets/weather_tile.dart';
 
-class ForecastWeatherPage extends StatefulWidget {
+import '../widgets/weather_tile.dart';
+
+class ForecastWeatherPage extends StatelessWidget {
   final ForecastWeatherController controller;
 
   const ForecastWeatherPage({super.key, required this.controller});
 
   @override
-  State<ForecastWeatherPage> createState() => _ForecastWeatherPageState();
-}
-
-class _ForecastWeatherPageState extends State<ForecastWeatherPage> {
-  late WeatherEntity weather;
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    weather = ModalRoute.of(context)!.settings.arguments as WeatherEntity;
-
-    widget.controller.getForecastWeather(
-      weather.location.lat,
-      weather.location.lon,
-    );
+    final weather = ModalRoute.of(context)!.settings.arguments as WeatherEntity;
 
     return Scaffold(
       appBar: AppBar(
         title: Text(weather.location.name),
       ),
-      body: ValueListenableBuilder<List<WeatherEntity>>(
-        valueListenable: widget.controller.forecastList,
-        builder: (context, value, child) => Container(
-          width: MediaQuery.of(context).size.width,
-          padding: const EdgeInsets.all(10),
-          child: RefreshIndicator(
-            onRefresh: () async {
-              widget.controller.getForecastWeather(
-                weather.location.lat,
-                weather.location.lon,
-              );
-            },
-            child: ListView.builder(
-              itemCount: widget.controller.forecastList.value.length,
+      body: FutureBuilder(
+        future: controller.getForecastWeather(
+          weather.location.lat,
+          weather.location.lon,
+        ),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return const Center(child: Text('Something went wrong!'));
+          } else {
+            return ListView.builder(
+              itemCount: controller.forecastList.value.length,
               itemBuilder: (context, index) {
-                final forecast = widget.controller.forecastList.value[index];
+                final forecast = controller.forecastList.value[index];
                 return WeatherTile(
                   weather: forecast,
                   showLocation: false,
                 );
               },
-            ),
-          ),
-        ),
+            );
+          }
+        },
       ),
     );
   }

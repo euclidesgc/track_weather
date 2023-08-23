@@ -60,14 +60,14 @@ class CityModel {
 
   factory CityModel.fromMap(Map<String, dynamic> map) {
     return CityModel(
-      id: map['id'] == null ? 0 : map['id'] * 1,
+      id: map['id'] == null ? 0 : map['id'] * 1 as int,
       name: map['name'] == null ? '' : map['name'] as String,
       coord: CoordModel.fromMap(map['coord'] as Map<String, dynamic>),
       country: map['country'] == null ? '' : map['country'] as String,
-      population: map['population'] == null ? 0 : map['population'] * 1,
-      timezone: map['timezone'] == null ? 0 : map['timezone'] * 1,
-      sunrise: map['sunrise'] == null ? 0 : map['sunrise'] * 1,
-      sunset: map['sunset'] == null ? 0 : map['sunset'] * 1,
+      population: map['population'] == null ? 0 : map['population'] * 1 as int,
+      timezone: map['timezone'] == null ? 0 : map['timezone'] * 1 as int,
+      sunrise: map['sunrise'] == null ? 0 : map['sunrise'] * 1 as int,
+      sunset: map['sunset'] == null ? 0 : map['sunset'] * 1 as int,
     );
   }
 

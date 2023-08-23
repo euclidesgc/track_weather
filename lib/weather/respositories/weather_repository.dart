@@ -6,6 +6,11 @@ abstract interface class WeatherRepository {
     required double lon,
   });
 
+  Future<WeatherEntity> getCurrentWeatherByName({
+    required String name,
+    required String country,
+  });
+
   Future<List<WeatherEntity>> getForecastWeather({
     required double lat,
     required double lon,
