@@ -1,7 +1,7 @@
 name: track_weather
 description: A new Flutter project.
 publish_to: 'none'
-version: 0.1.0
+version: 0.2.0
 
 environment:
   sdk: '>=3.0.5 <4.0.0'
@@ -17,6 +17,8 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
+  mocktail: ^1.0.0
+  http_mock_adapter: ^0.4.4
 
 flutter:
   uses-material-design: true

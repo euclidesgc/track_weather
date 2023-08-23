@@ -23,7 +23,7 @@ class RainModel {
 
   factory RainModel.fromMap(Map<String, dynamic> map) {
     return RainModel(
-      the3H: map['the3H'] == null ? 0.0 : map['the3H'] * 1.0,
+      the3H: map['the3H'] == null ? 0.0 : map['the3H'] * 1.0 as double,
     );
   }
 

@@ -1,3 +1,4 @@
+
 import 'package:track_weather/weather/domain/entities/weather_entity.dart';
 
 import '../../respositories/weather_repository.dart';
@@ -11,6 +12,10 @@ class GetForecastWeatherUsecase {
     required double lat,
     required double lon,
   }) async {
-    return await repository.getForecastWeather(lat: lat, lon: lon);
+    try {
+      return await repository.getForecastWeather(lat: lat, lon: lon);
+    } catch (e) {
+      rethrow;
+    }
   }
 }
