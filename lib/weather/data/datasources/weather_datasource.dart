@@ -8,6 +8,11 @@ abstract interface class WeatherDatasource {
     required double lon,
   });
 
+  Future<CurrentWeatherModel> getCurrentWeatherByName({
+    required String name,
+    required String country,
+  });
+
   Future<ForecastWeatherModel> getForecastWeather({
     required double lat,
     required double lon,

@@ -5,6 +5,7 @@ import 'package:track_weather/weather/domain/usecases/get_current_weather_usecas
 import 'package:track_weather/weather/presentation/forecast_weather/forecast_weather_controller.dart';
 
 import 'weather/data/datasources/weather_datasource_impl.dart';
+import 'weather/domain/usecases/get_current_weather_by_name_usecase.dart';
 import 'weather/domain/usecases/get_forecast_weather_usecase.dart';
 import 'weather/presentation/current_weather/current_weather_controller.dart';
 import 'weather/presentation/current_weather/current_weather_page.dart';
@@ -40,7 +41,14 @@ class MainApp extends StatelessWidget {
       routes: {
         '/home': (context) => CurrentWeatherPage(
               controller: CurrentWeatherController(
-                usecase: GetCurrentWeatherUsecase(
+                byNameUsecase: GetCurrentWeatherByNameUsecase(
+                  repository: WeatherRepositoryImpl(
+                    datasource: WeatherDatasourceImpl(
+                      client: Dio(),
+                    ),
+                  ),
+                ),
+                byCoordUsecase: GetCurrentWeatherUsecase(
                   repository: WeatherRepositoryImpl(
                     datasource: WeatherDatasourceImpl(
                       client: Dio(),
