@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:track_weather/weather/data/models/current_weather_model.dart';
 import 'package:track_weather/weather/data/models/forecast_weather_model.dart';
+import 'package:track_weather/weather/errors/errors.dart';
 
 import '../urls.dart';
 import 'weather_datasource.dart';
@@ -25,18 +26,18 @@ class WeatherDatasourceImpl implements WeatherDatasource {
     } on DioException catch (e) {
       if (e.response != null) {
         if (e.response!.statusCode == 400) {
-          throw Exception('Bad request');
+          throw BadRequestError();
         } else if (e.response!.statusCode == 401) {
-          throw Exception('Unauthorized');
+          throw UnauthorizedError();
         } else if (e.response!.statusCode == 404) {
-          throw Exception('Not found');
+          throw NotFoundError();
         } else if (e.response!.statusCode == 429) {
-          throw Exception('Limit of requests exceeded');
+          throw LimitOfRequestsExceededError();
         } else {
-          throw Exception('Unexpected error');
+          throw UnexpectedError();
         }
       } else {
-        throw Exception('Error getting weather data');
+        throw GetCurrentWeatherError();
       }
     } catch (e, s) {
       log(e.toString(), stackTrace: s);
@@ -57,21 +58,54 @@ class WeatherDatasourceImpl implements WeatherDatasource {
     } on DioException catch (e) {
       if (e.response != null) {
         if (e.response!.statusCode == 400) {
-          throw Exception('Bad request');
+          throw BadRequestError();
         } else if (e.response!.statusCode == 401) {
-          throw Exception('Unauthorized');
+          throw UnauthorizedError();
         } else if (e.response!.statusCode == 404) {
-          throw Exception('Not found');
+          throw NotFoundError();
         } else if (e.response!.statusCode == 429) {
-          throw Exception('Limit of requests exceeded');
+          throw LimitOfRequestsExceededError();
         } else {
-          throw Exception('Unexpected error');
+          throw UnexpectedError();
         }
       } else {
-        throw Exception('Error getting weather data');
+        throw GetCurrentWeatherError();
       }
     } catch (e) {
       throw Exception('Error getting weather data');
+    }
+  }
+
+  @override
+  Future<CurrentWeatherModel> getCurrentWeatherByName({
+    required String name,
+    required String country,
+  }) async {
+    final query = '$name,$country';
+    final url = Urls.currentWeatherByNameUrl(query);
+
+    try {
+      final response = await client.get(url);
+
+      return CurrentWeatherModel.fromMap(response.data);
+    } on DioException catch (e) {
+      if (e.response != null) {
+        if (e.response!.statusCode == 400) {
+          throw BadRequestError();
+        } else if (e.response!.statusCode == 401) {
+          throw UnauthorizedError();
+        } else if (e.response!.statusCode == 404) {
+          throw NotFoundError();
+        } else if (e.response!.statusCode == 429) {
+          throw LimitOfRequestsExceededError();
+        } else {
+          throw UnexpectedError();
+        }
+      } else {
+        throw GetCurrentWeatherByNameError();
+      }
+    } catch (e) {
+      throw Exception('Unexpected error');
     }
   }
 }

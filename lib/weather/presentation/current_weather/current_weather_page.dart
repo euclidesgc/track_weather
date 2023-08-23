@@ -5,31 +5,24 @@ import '../../errors/errors.dart';
 import '../widgets/weather_tile.dart';
 import 'current_weather_controller.dart';
 
-class CurrentWeatherPage extends StatefulWidget {
+class CurrentWeatherPage extends StatelessWidget {
   final CurrentWeatherController controller;
 
-  const CurrentWeatherPage({
+  CurrentWeatherPage({
     super.key,
     required this.controller,
   });
 
-  @override
-  State<CurrentWeatherPage> createState() => _CurrentWeatherPageState();
-}
-
-class _CurrentWeatherPageState extends State<CurrentWeatherPage> {
   final TextEditingController tECName = TextEditingController();
+
   final TextEditingController tECCountry = TextEditingController();
+
   final scaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
 
   @override
-  void initState() {
-    super.initState();
-    widget.controller.updateWeatherList();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    controller.updateWeatherList();
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Weather App'),
@@ -83,8 +76,8 @@ class _CurrentWeatherPageState extends State<CurrentWeatherPage> {
                   onPressed: () async {
                     try {
                       FocusScope.of(context).unfocus();
-                      await widget.controller
-                          .addLocation(tECName.text, tECCountry.text);
+                      await controller.addLocation(
+                          tECName.text, tECCountry.text);
                     } catch (e) {
                       final snackBarContent = (e is WeatherError)
                           ? e.toString()
@@ -109,7 +102,7 @@ class _CurrentWeatherPageState extends State<CurrentWeatherPage> {
           ),
           Expanded(
             child: FutureBuilder(
-              future: widget.controller.updateWeatherList(),
+              future: controller.updateWeatherList(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(child: CircularProgressIndicator());
@@ -118,9 +111,9 @@ class _CurrentWeatherPageState extends State<CurrentWeatherPage> {
                   return const Center(child: Text('Something went wrong!'));
                 }
                 return ValueListenableBuilder<List<WeatherEntity>>(
-                  valueListenable: widget.controller.locationsList,
+                  valueListenable: controller.locationsList,
                   builder: (context, value, child) => RefreshIndicator(
-                    onRefresh: widget.controller.updateWeatherList,
+                    onRefresh: controller.updateWeatherList,
                     child: ListView.builder(
                       itemCount: value.length,
                       itemBuilder: (context, index) {
@@ -159,8 +152,7 @@ class _CurrentWeatherPageState extends State<CurrentWeatherPage> {
                                 const Icon(Icons.delete, color: Colors.white),
                           ),
                           onDismissed: (direction) {
-                            widget.controller.locationsList.value
-                                .removeAt(index);
+                            controller.locationsList.value.removeAt(index);
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 content:
