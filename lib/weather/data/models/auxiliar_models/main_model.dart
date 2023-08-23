@@ -40,23 +40,26 @@ class MainModel {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'temp': temp,
-      'feelsLike': feelsLike,
-      'tempMin': tempMin,
-      'tempMax': tempMax,
+      'feels_like': feelsLike,
+      'temp_min': tempMin,
+      'temp_max': tempMax,
       'pressure': pressure,
       'humidity': humidity,
     };
   }
 
   factory MainModel.fromMap(Map<String, dynamic> map) {
-    return MainModel(
-      temp: map['temp'] == null ? 0.0 : map['temp'] * 1.0,
-      feelsLike: map['feels_like'] == null ? 0.0 : map['feels_like'] * 1.0,
-      tempMin: map['temp_min'] == null ? 0.0 : map['temp_min'] * 1.0,
-      tempMax: map['temp_max'] == null ? 0.0 : map['temp_max'] * 1.0,
-      pressure: map['pressure'] == null ? 0 : map['pressure'] * 1,
-      humidity: map['humidity'] == null ? 0 : map['humidity'] * 1,
+    final model = MainModel(
+      temp: map['temp'] == null ? 0.0 : map['temp'] * 1.0 as double,
+      feelsLike:
+          map['feels_like'] == null ? 0.0 : map['feels_like'] * 1.0 as double,
+      tempMin: map['temp_min'] == null ? 0.0 : map['temp_min'] * 1.0 as double,
+      tempMax: map['temp_max'] == null ? 0.0 : map['temp_max'] * 1.0 as double,
+      pressure: map['pressure'] == null ? 0 : map['pressure'] * 1 as int,
+      humidity: map['humidity'] == null ? 0 : map['humidity'] * 1 as int,
     );
+
+    return model;
   }
 
   String toJson() => json.encode(toMap());

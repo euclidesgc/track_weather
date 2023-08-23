@@ -25,7 +25,7 @@ class WindModel {
 
   factory WindModel.fromMap(Map<String, dynamic> map) {
     return WindModel(
-      speed: map['speed'] == null ? 0.0 : map['speed'] * 1.0,
+      speed: map['speed'] == null ? 0.0 : map['speed'] * 1.0 as double,
     );
   }
 

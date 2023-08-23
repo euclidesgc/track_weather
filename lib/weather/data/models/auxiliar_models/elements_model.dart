@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
@@ -52,7 +53,7 @@ class ElementModel {
   }
 
   Map<String, dynamic> toMap() {
-    return <String, dynamic>{
+    final model = <String, dynamic>{
       'dt': dt,
       'main': main.toMap(),
       'weather': weather.map((x) => x.toMap()).toList(),
@@ -61,13 +62,14 @@ class ElementModel {
       'visibility': visibility,
       'pop': pop,
       'rain': rain.toMap(),
-      'dtTxt': dtTxt.millisecondsSinceEpoch,
+      'dtTxt': dtTxt.toIso8601String(),
     };
+    return model;
   }
 
   factory ElementModel.fromMap(Map<String, dynamic> map) {
-    return ElementModel(
-      dt: map['dt'] == null ? 0 : map['dt'] * 1,
+    final model = ElementModel(
+      dt: map['dt'] == null ? 0 : map['dt'] * 1 as int,
       main: MainModel.fromMap(map['main'] as Map<String, dynamic>),
       weather: List<WeatherModel>.from(
         (map['weather'] as List<dynamic>).map<WeatherModel>(
@@ -76,14 +78,12 @@ class ElementModel {
       ),
       clouds: CloudsModel.fromMap(map['clouds'] as Map<String, dynamic>),
       wind: WindModel.fromMap(map['wind'] as Map<String, dynamic>),
-      visibility: map['visibility'] == null ? 0 : map['visibility'] * 1,
-      pop: map['pop'] == null ? 0.0 : map['pop'] * 1.0,
-      rain: map['rain'] != null
-          ? RainModel.fromMap(map['rain'] as Map<String, dynamic>)
-          : RainModel(the3H: 0.0),
-      dtTxt: DateTime.fromMillisecondsSinceEpoch(
-          map['dtTxt'] == null ? 0 : map['dtTxt'] * 1),
+      visibility: map['visibility'] == null ? 0 : map['visibility'] * 1 as int,
+      pop: map['pop'] == null ? 0.0 : map['pop'] * 1.0 as double,
+      rain: RainModel.fromMap(map['rain'] as Map<String, dynamic>),
+      dtTxt: DateTime.parse(map['dtTxt'] as String),
     );
+    return model;
   }
 
   String toJson() => json.encode(toMap());
@@ -93,7 +93,7 @@ class ElementModel {
 
   @override
   String toString() {
-    return 'ListElementModel(dt: $dt, main: $main, weather: $weather, clouds: $clouds, wind: $wind, visibility: $visibility, pop: $pop, rain: $rain, dtTxt: $dtTxt)';
+    return 'ElementModel(dt: $dt, main: $main, weather: $weather, clouds: $clouds, wind: $wind, visibility: $visibility, pop: $pop, rain: $rain, dtTxt: $dtTxt)';
   }
 
   @override
