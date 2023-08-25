@@ -5,18 +5,19 @@ import 'package:flutter/foundation.dart';
 import 'auxiliar_models/auxiliar_models.dart';
 
 class CurrentWeatherModel {
+  final String name;
+  final SysModel sys;
   final CoordModel coord;
   final List<WeatherModel> weather;
-  final String base;
   final MainModel main;
-  final int visibility;
   final WindModel wind;
+  
+  final String base;
+  final int visibility;
   final CloudsModel clouds;
   final int dt;
-  final SysModel sys;
   final int timezone;
   final int id;
-  final String name;
   final int cod;
 
   CurrentWeatherModel({

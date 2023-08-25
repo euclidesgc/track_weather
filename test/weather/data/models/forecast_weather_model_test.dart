@@ -22,7 +22,6 @@ void main() {
         wind: WindModel(speed: 1.0),
         visibility: 10000,
         pop: 0.1,
-        rain: RainModel(the3H: 5.0),
         dtTxt: DateTime.fromMillisecondsSinceEpoch(1629900000),
       );
       final cityModel = CityModel(
@@ -69,7 +68,6 @@ void main() {
         wind: WindModel(speed: 1.0),
         visibility: 10000,
         pop: 0.1,
-        rain: RainModel(the3H: 5.0),
         dtTxt: DateTime.fromMillisecondsSinceEpoch(1629900000),
       );
       final cityModel = CityModel(
@@ -115,7 +113,6 @@ void main() {
         wind: WindModel(speed: 1.0),
         visibility: 10000,
         pop: 0.1,
-        rain: RainModel(the3H: 5.0),
         dtTxt: DateTime.fromMillisecondsSinceEpoch(1629900000),
       );
       final cityModel = CityModel(
@@ -161,7 +158,6 @@ void main() {
         wind: WindModel(speed: 1.0),
         visibility: 10000,
         pop: 0.1,
-        rain: RainModel(the3H: 5.0),
         dtTxt: DateTime.fromMillisecondsSinceEpoch(1629900000),
       );
       final cityModel = CityModel(
@@ -207,7 +203,6 @@ void main() {
         wind: WindModel(speed: 1.0),
         visibility: 10000,
         pop: 0.1,
-        rain: RainModel(the3H: 5.0),
         dtTxt: DateTime.fromMillisecondsSinceEpoch(1629900000),
       );
       final cityModel = CityModel(

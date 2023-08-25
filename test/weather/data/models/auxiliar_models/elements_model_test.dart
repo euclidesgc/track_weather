@@ -7,7 +7,6 @@ void main() {
   late DateTime testDate;
   late CloudsModel cloudsModel;
   late WindModel windModel;
-  late RainModel rainModel;
   late ElementModel elementModel;
   final dtSample = DateTime.now();
 
@@ -32,7 +31,6 @@ void main() {
 
     cloudsModel = CloudsModel(all: 1);
     windModel = WindModel(speed: 1.0);
-    rainModel = RainModel(the3H: 0.5);
 
     elementModel = ElementModel(
       dt: 1,
@@ -42,7 +40,6 @@ void main() {
       wind: windModel,
       visibility: 10000,
       pop: 0.1,
-      rain: rainModel,
       dtTxt: dtSample,
     );
   });
@@ -56,7 +53,6 @@ void main() {
       expect(elementModel.wind, windModel);
       expect(elementModel.visibility, 10000);
       expect(elementModel.pop, 0.1);
-      expect(elementModel.rain, rainModel);
       expect(elementModel.dtTxt, testDate);
     });
 
@@ -95,7 +91,6 @@ Expected: ElementModel:<ElementModel(dt: 1, main: MainModel(temp: 25.0, feelsLik
         wind: windModel,
         visibility: 10000,
         pop: 0.1,
-        rain: rainModel,
         dtTxt: testDate,
       );
 
@@ -107,7 +102,6 @@ Expected: ElementModel:<ElementModel(dt: 1, main: MainModel(temp: 25.0, feelsLik
         wind: windModel,
         visibility: 10000,
         pop: 0.1,
-        rain: rainModel,
         dtTxt: testDate,
       );
       final elementModel3 = elementModel1.copyWith(dt: 3);

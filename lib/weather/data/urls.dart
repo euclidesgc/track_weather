@@ -6,7 +6,7 @@ class Urls {
     String units = 'metric',
     String apiKey = const String.fromEnvironment('API_KEY'),
   }) {
-    return 'https://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=$apiKey&lang=$lang&units=$units';
+    return 'weather?lat=$lat&lon=$lon&appid=$apiKey&lang=$lang&units=$units';
   }
 
   static String currentWeatherByNameUrl(
@@ -15,7 +15,7 @@ class Urls {
     String units = 'metric',
     String apiKey = const String.fromEnvironment('API_KEY'),
   }) {
-    return 'https://api.openweathermap.org/data/2.5/weather?q=$name&appid=$apiKey&lang=$lang&units=$units';
+    return 'weather?q=$name&appid=$apiKey&lang=$lang&units=$units';
   }
 
   static String forecastWeatherUrl(
@@ -26,7 +26,7 @@ class Urls {
     int cnt = 5,
     String apiKey = const String.fromEnvironment('API_KEY'),
   }) {
-    return 'https://api.openweathermap.org/data/2.5/forecast?lat=$lat&lon=$lon&appid=$apiKey&lang=$lang&units=$units&cnt=$cnt';
+    return 'forecast?lat=$lat&lon=$lon&appid=$apiKey&lang=$lang&units=$units&cnt=$cnt';
   }
 
   static String iconUrl(String icon) {

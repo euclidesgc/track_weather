@@ -8,7 +8,7 @@ void main() {
     test('currentWeatherUrl should return the correct URL', () {
       final result = Urls.currentWeatherUrl(40.0, 50.0, apiKey: apiKey);
       const expectedUrl =
-          'https://api.openweathermap.org/data/2.5/weather?lat=40.0&lon=50.0&appid=$apiKey&lang=pt_br&units=metric';
+          'weather?lat=40.0&lon=50.0&appid=$apiKey&lang=pt_br&units=metric';
 
       expect(result, expectedUrl);
     });
@@ -16,7 +16,7 @@ void main() {
     test('currentWeatherByNameUrl should return the correct URL', () {
       final result = Urls.currentWeatherByNameUrl('London', apiKey: apiKey);
       const expectedUrl =
-          'https://api.openweathermap.org/data/2.5/weather?q=London&appid=$apiKey&lang=pt_br&units=metric';
+          'weather?q=London&appid=$apiKey&lang=pt_br&units=metric';
 
       expect(result, expectedUrl);
     });
@@ -24,7 +24,7 @@ void main() {
     test('forecastWeatherUrl should return the correct URL', () {
       final result = Urls.forecastWeatherUrl(40.0, 50.0, apiKey: apiKey);
       const expectedUrl =
-          'https://api.openweathermap.org/data/2.5/forecast?lat=40.0&lon=50.0&appid=$apiKey&lang=pt_br&units=metric&cnt=5';
+          'forecast?lat=40.0&lon=50.0&appid=$apiKey&lang=pt_br&units=metric&cnt=5';
 
       expect(result, expectedUrl);
     });

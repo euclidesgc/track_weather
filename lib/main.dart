@@ -1,10 +1,10 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:track_weather/weather/data/repositories/weather_repository_impl.dart';
 import 'package:track_weather/weather/domain/usecases/get_current_weather_usecase.dart';
 import 'package:track_weather/weather/presentation/forecast_weather/forecast_weather_controller.dart';
 
 import 'weather/data/datasources/weather_datasource_impl.dart';
+import 'weather/data/http_client/client_http_dio_impl.dart';
 import 'weather/domain/usecases/get_current_weather_by_name_usecase.dart';
 import 'weather/domain/usecases/get_forecast_weather_usecase.dart';
 import 'weather/presentation/current_weather/current_weather_controller.dart';
@@ -44,28 +44,30 @@ class MainApp extends StatelessWidget {
                 byNameUsecase: GetCurrentWeatherByNameUsecase(
                   repository: WeatherRepositoryImpl(
                     datasource: WeatherDatasourceImpl(
-                      client: Dio(),
+                      client: ClientHttpDioImpl(),
                     ),
                   ),
                 ),
                 byCoordUsecase: GetCurrentWeatherUsecase(
                   repository: WeatherRepositoryImpl(
                     datasource: WeatherDatasourceImpl(
-                      client: Dio(),
+                      client: ClientHttpDioImpl(),
                     ),
                   ),
                 ),
               ),
             ),
         '/forecast_weather': (context) => ForecastWeatherPage(
-                controller: ForecastWeatherController(
-                    usecase: GetForecastWeatherUsecase(
-              repository: WeatherRepositoryImpl(
-                datasource: WeatherDatasourceImpl(
-                  client: Dio(),
+              controller: ForecastWeatherController(
+                usecase: GetForecastWeatherUsecase(
+                  repository: WeatherRepositoryImpl(
+                    datasource: WeatherDatasourceImpl(
+                      client: ClientHttpDioImpl(),
+                    ),
+                  ),
                 ),
               ),
-            ))),
+            ),
       },
     );
   }

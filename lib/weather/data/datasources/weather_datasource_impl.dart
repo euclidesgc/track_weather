@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
+import 'package:track_weather/weather/data/http_client/client_http.dart';
 import 'package:track_weather/weather/data/models/current_weather_model.dart';
 import 'package:track_weather/weather/data/models/forecast_weather_model.dart';
 import 'package:track_weather/weather/errors/errors.dart';
@@ -9,7 +10,7 @@ import '../urls.dart';
 import 'weather_datasource.dart';
 
 class WeatherDatasourceImpl implements WeatherDatasource {
-  final Dio client;
+  final ClientHttp client;
 
   WeatherDatasourceImpl({required this.client});
 
@@ -20,7 +21,7 @@ class WeatherDatasourceImpl implements WeatherDatasource {
   }) async {
     final url = Urls.currentWeatherUrl(lat, lon);
     try {
-      final response = await client.get(url);
+      final response = await client.request(url: url, verb: HttpVerb.GET);
 
       return CurrentWeatherModel.fromMap(response.data);
     } on DioException catch (e) {
@@ -52,7 +53,7 @@ class WeatherDatasourceImpl implements WeatherDatasource {
   }) async {
     final url = Urls.forecastWeatherUrl(lat, lon);
     try {
-      final response = await client.get(url);
+      final response = await client.request(url: url, verb: HttpVerb.GET);
 
       return ForecastWeatherModel.fromMap(response.data);
     } on DioException catch (e) {
@@ -71,7 +72,8 @@ class WeatherDatasourceImpl implements WeatherDatasource {
       } else {
         throw GetCurrentWeatherError();
       }
-    } catch (e) {
+    } catch (e, s) {
+      log('🚨 Error:', error: e, stackTrace: s);
       throw Exception('Error getting weather data');
     }
   }
@@ -85,7 +87,7 @@ class WeatherDatasourceImpl implements WeatherDatasource {
     final url = Urls.currentWeatherByNameUrl(query);
 
     try {
-      final response = await client.get(url);
+      final response = await client.request(url: url, verb: HttpVerb.GET);
 
       return CurrentWeatherModel.fromMap(response.data);
     } on DioException catch (e) {

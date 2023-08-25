@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import '../../domain/entities/weather_entity.dart';
@@ -22,6 +24,7 @@ class CurrentWeatherPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     controller.updateWeatherList();
+    Timer? debounce;
 
     return Scaffold(
       appBar: AppBar(
@@ -39,6 +42,12 @@ class CurrentWeatherPage extends StatelessWidget {
                   child: TextFormField(
                     controller: tECName,
                     decoration: const InputDecoration(labelText: 'Nome'),
+                    onChanged: (value) {
+                      if (debounce?.isActive ?? false) debounce!.cancel();
+                      debounce = Timer(const Duration(milliseconds: 500), () {
+                        controller.filterWeatherList(value);
+                      });
+                    },
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Por favor, insira um nome';
@@ -76,8 +85,11 @@ class CurrentWeatherPage extends StatelessWidget {
                   onPressed: () async {
                     try {
                       FocusScope.of(context).unfocus();
-                      await controller.addLocation(
+                      await controller.addNewLocation(
                           tECName.text, tECCountry.text);
+                      tECName.clear();
+                      tECCountry.clear();
+                      controller.updateWeatherList();
                     } catch (e) {
                       final snackBarContent = (e is WeatherError)
                           ? e.toString()
@@ -108,10 +120,14 @@ class CurrentWeatherPage extends StatelessWidget {
                   return const Center(child: CircularProgressIndicator());
                 }
                 if (snapshot.hasError) {
-                  return const Center(child: Text('Something went wrong!'));
+                  if (snapshot.error is WeatherError) {
+                    return Center(child: Text(snapshot.error.toString()));
+                  } else {
+                    return const Center(child: Text('Something went wrong!'));
+                  }
                 }
                 return ValueListenableBuilder<List<WeatherEntity>>(
-                  valueListenable: controller.locationsList,
+                  valueListenable: controller.displaylocationsList,
                   builder: (context, value, child) => RefreshIndicator(
                     onRefresh: controller.updateWeatherList,
                     child: ListView.builder(
