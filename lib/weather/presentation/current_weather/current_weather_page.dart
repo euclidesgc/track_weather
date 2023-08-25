@@ -108,7 +108,11 @@ class CurrentWeatherPage extends StatelessWidget {
                   return const Center(child: CircularProgressIndicator());
                 }
                 if (snapshot.hasError) {
-                  return const Center(child: Text('Something went wrong!'));
+                  if (snapshot.error is WeatherError) {
+                    return Center(child: Text(snapshot.error.toString()));
+                  } else {
+                    return const Center(child: Text('Something went wrong!'));
+                  }
                 }
                 return ValueListenableBuilder<List<WeatherEntity>>(
                   valueListenable: controller.locationsList,

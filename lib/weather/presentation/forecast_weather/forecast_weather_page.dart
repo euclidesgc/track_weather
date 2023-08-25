@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:track_weather/weather/domain/entities/weather_entity.dart';
 import 'package:track_weather/weather/presentation/forecast_weather/forecast_weather_controller.dart';
 
+import '../../errors/errors.dart';
 import '../widgets/weather_tile.dart';
 
 class ForecastWeatherPage extends StatelessWidget {
@@ -26,7 +27,11 @@ class ForecastWeatherPage extends StatelessWidget {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
-            return const Center(child: Text('Something went wrong!'));
+            if (snapshot.error is WeatherError) {
+              return Center(child: Text(snapshot.error.toString()));
+            } else {
+              return const Center(child: Text('Something went wrong!'));
+            }
           } else {
             return ListView.builder(
               itemCount: controller.forecastList.value.length,
