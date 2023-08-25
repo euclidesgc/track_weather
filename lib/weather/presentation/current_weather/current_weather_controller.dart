@@ -1,4 +1,3 @@
-
 import 'package:flutter/foundation.dart';
 import 'package:track_weather/weather/domain/usecases/get_current_weather_usecase.dart';
 
@@ -47,6 +46,9 @@ class CurrentWeatherController {
     )
   ]);
 
+  ValueNotifier<List<WeatherEntity>> displaylocationsList =
+      ValueNotifier<List<WeatherEntity>>([]);
+
   Future<WeatherEntity> getCurrentWeather(double lat, double lon) async {
     try {
       final weather = await byCoordUsecase.call(lat: lat, lon: lon);
@@ -58,6 +60,8 @@ class CurrentWeatherController {
 
   Future<void> updateWeatherList() async {
     try {
+      displaylocationsList.value = locationsList.value;
+
       final updatedList = await Future.wait(
         locationsList.value.map(
           (location) async {
@@ -82,24 +86,41 @@ class CurrentWeatherController {
           },
         ),
       );
-      locationsList.value = updatedList;
+
+      displaylocationsList.value = updatedList;
     } catch (e) {
       rethrow;
     }
   }
 
-  addLocation(String name, String country) async {
+  addNewLocation(String name, String country) async {
     try {
       final newWeather = await byNameUsecase.call(name: name, country: country);
 
-      List<WeatherEntity> newList = [
+      locationsList.value = [
         ...locationsList.value,
-        ...[newWeather]
+        newWeather,
       ];
 
-      locationsList.value = newList;
+      displaylocationsList.value = [...locationsList.value];
     } catch (e) {
       rethrow;
     }
+  }
+
+  void filterWeatherList(String searchTerm) {
+    if (searchTerm.isEmpty) {
+      displaylocationsList.value = locationsList.value;
+      return;
+    }
+
+    List<WeatherEntity> filteredList =
+        displaylocationsList.value.where((weather) {
+      return weather.location.name
+          .toLowerCase()
+          .contains(searchTerm.toLowerCase());
+    }).toList();
+
+    displaylocationsList.value = filteredList;
   }
 }
