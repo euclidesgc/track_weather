@@ -1,0 +1,92 @@
+{
+    "cod": "200",
+    "message": 0,
+    "cnt": 2,
+    "list": [
+      {
+        "dt": 1692932400,
+        "main": {
+          "temp": 297.47,
+          "feels_like": 297.52,
+          "temp_min": 297.47,
+          "temp_max": 297.47,
+          "pressure": 1008,
+          "sea_level": 1008,
+          "grnd_level": 1005,
+          "humidity": 60,
+          "temp_kf": 0
+        },
+        "weather": [
+          {
+            "id": 802,
+            "main": "Clouds",
+            "description": "scattered clouds",
+            "icon": "03n"
+          }
+        ],
+        "clouds": {
+          "all": 37
+        },
+        "wind": {
+          "speed": 1.2,
+          "deg": 347,
+          "gust": 1.56
+        },
+        "visibility": 10000,
+        "pop": 0,
+        "sys": {
+          "pod": "n"
+        },
+        "dt_txt": "2023-08-25 03:00:00"
+      },
+      {
+        "dt": 1692943200,
+        "main": {
+          "temp": 297.04,
+          "feels_like": 297.16,
+          "temp_min": 296.17,
+          "temp_max": 297.04,
+          "pressure": 1008,
+          "sea_level": 1008,
+          "grnd_level": 1006,
+          "humidity": 64,
+          "temp_kf": 0.87
+        },
+        "weather": [
+          {
+            "id": 802,
+            "main": "Clouds",
+            "description": "scattered clouds",
+            "icon": "03n"
+          }
+        ],
+        "clouds": {
+          "all": 41
+        },
+        "wind": {
+          "speed": 7.09,
+          "deg": 206,
+          "gust": 12.59
+        },
+        "visibility": 10000,
+        "pop": 0,
+        "sys": {
+          "pod": "n"
+        },
+        "dt_txt": "2023-08-25 06:00:00"
+      }
+    ],
+    "city": {
+      "id": 3458266,
+      "name": "Macaé",
+      "coord": {
+        "lat": -22.3708,
+        "lon": -41.7869
+      },
+      "country": "BR",
+      "population": 143029,
+      "timezone": -10800,
+      "sunrise": 1692867887,
+      "sunset": 1692909290
+    }
+  }
