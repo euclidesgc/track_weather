@@ -7,6 +7,11 @@ abstract class WeatherError implements Exception {
   String toString() => message;
 }
 
+class ClientHttpRequestTypeError extends WeatherError {
+  ClientHttpRequestTypeError([String message = "Invalid HTTP VERB"])
+      : super(message);
+}
+
 class BadRequestError extends WeatherError {
   BadRequestError([String message = "Bad Request"]) : super(message);
 }
@@ -26,6 +31,10 @@ class LimitOfRequestsExceededError extends WeatherError {
 
 class UnexpectedError extends WeatherError {
   UnexpectedError([String message = "Unexpected Error"]) : super(message);
+}
+
+class ServerError extends WeatherError {
+  ServerError([String message = "Server Error"]) : super(message);
 }
 
 class GetCurrentWeatherError extends WeatherError {

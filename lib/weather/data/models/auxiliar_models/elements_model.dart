@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
@@ -13,7 +12,6 @@ class ElementModel {
   final WindModel wind;
   final int visibility;
   final double pop;
-  final RainModel rain;
   final DateTime dtTxt;
 
   ElementModel({
@@ -24,7 +22,6 @@ class ElementModel {
     required this.wind,
     required this.visibility,
     required this.pop,
-    required this.rain,
     required this.dtTxt,
   });
 
@@ -47,7 +44,6 @@ class ElementModel {
       wind: wind ?? this.wind,
       visibility: visibility ?? this.visibility,
       pop: pop ?? this.pop,
-      rain: rain ?? this.rain,
       dtTxt: dtTxt ?? this.dtTxt,
     );
   }
@@ -61,7 +57,6 @@ class ElementModel {
       'wind': wind.toMap(),
       'visibility': visibility,
       'pop': pop,
-      'rain': rain.toMap(),
       'dtTxt': dtTxt.toIso8601String(),
     };
     return model;
@@ -80,8 +75,9 @@ class ElementModel {
       wind: WindModel.fromMap(map['wind'] as Map<String, dynamic>),
       visibility: map['visibility'] == null ? 0 : map['visibility'] * 1 as int,
       pop: map['pop'] == null ? 0.0 : map['pop'] * 1.0 as double,
-      rain: RainModel.fromMap(map['rain'] as Map<String, dynamic>),
-      dtTxt: DateTime.parse(map['dtTxt'] as String),
+      dtTxt: map['dtTxt'] == null
+          ? DateTime.now()
+          : DateTime.parse(map['dtTxt'] as String),
     );
     return model;
   }
@@ -93,7 +89,7 @@ class ElementModel {
 
   @override
   String toString() {
-    return 'ElementModel(dt: $dt, main: $main, weather: $weather, clouds: $clouds, wind: $wind, visibility: $visibility, pop: $pop, rain: $rain, dtTxt: $dtTxt)';
+    return 'ElementModel(dt: $dt, main: $main, weather: $weather, clouds: $clouds, wind: $wind, visibility: $visibility, pop: $pop, dtTxt: $dtTxt)';
   }
 
   @override
@@ -107,7 +103,6 @@ class ElementModel {
         other.wind == wind &&
         other.visibility == visibility &&
         other.pop == pop &&
-        other.rain == rain &&
         other.dtTxt == dtTxt;
   }
 
@@ -120,7 +115,6 @@ class ElementModel {
         wind.hashCode ^
         visibility.hashCode ^
         pop.hashCode ^
-        rain.hashCode ^
         dtTxt.hashCode;
   }
 }
