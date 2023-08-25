@@ -71,7 +71,8 @@ class WeatherDatasourceImpl implements WeatherDatasource {
       } else {
         throw GetCurrentWeatherError();
       }
-    } catch (e) {
+    } catch (e, s) {
+      log('🚨 Error:', error: e, stackTrace: s);
       throw Exception('Error getting weather data');
     }
   }
