@@ -4,6 +4,7 @@ import 'package:track_weather/weather/domain/usecases/get_current_weather_usecas
 import '../../domain/entities/location_entity.dart';
 import '../../domain/entities/weather_entity.dart';
 import '../../domain/usecases/get_current_weather_by_name_usecase.dart';
+import '../../utils/utils.dart';
 
 class CurrentWeatherController {
   final GetCurrentWeatherUsecase byCoordUsecase;
@@ -59,9 +60,13 @@ class CurrentWeatherController {
   }
 
   Future<void> updateWeatherList() async {
+    final isConnected = await Utils.verifyConnectivity();
     try {
       displaylocationsList.value = locationsList.value;
 
+      if (isConnected == false) {
+        return;
+      }
       final updatedList = await Future.wait(
         locationsList.value.map(
           (location) async {
@@ -88,6 +93,7 @@ class CurrentWeatherController {
       );
 
       displaylocationsList.value = updatedList;
+      locationsList.value = updatedList;
     } catch (e) {
       rethrow;
     }
