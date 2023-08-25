@@ -1,8 +1,6 @@
-import 'package:equatable/equatable.dart';
-
 import 'location_entity.dart';
 
-class WeatherEntity extends Equatable {
+class WeatherEntity {
   final LocationEntity location;
   final String weather;
   final String time;
@@ -47,17 +45,36 @@ class WeatherEntity extends Equatable {
   });
 
   @override
-  List<Object?> get props => [
-        weather,
-        time,
-        description,
-        icon,
-        temp,
-        feelsLike,
-        tempMin,
-        tempMax,
-        pressure,
-        humidity,
-        wind,
-      ];
+  bool operator ==(covariant WeatherEntity other) {
+    if (identical(this, other)) return true;
+
+    return other.location == location &&
+        other.weather == weather &&
+        other.time == time &&
+        other.description == description &&
+        other.icon == icon &&
+        other.temp == temp &&
+        other.feelsLike == feelsLike &&
+        other.tempMin == tempMin &&
+        other.tempMax == tempMax &&
+        other.pressure == pressure &&
+        other.humidity == humidity &&
+        other.wind == wind;
+  }
+
+  @override
+  int get hashCode {
+    return location.hashCode ^
+        weather.hashCode ^
+        time.hashCode ^
+        description.hashCode ^
+        icon.hashCode ^
+        temp.hashCode ^
+        feelsLike.hashCode ^
+        tempMin.hashCode ^
+        tempMax.hashCode ^
+        pressure.hashCode ^
+        humidity.hashCode ^
+        wind.hashCode;
+  }
 }

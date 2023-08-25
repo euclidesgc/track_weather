@@ -14,4 +14,14 @@ class LocationEntity {
     this.lat = 0.0,
     this.lon = 0.0,
   });
+
+  @override
+  bool operator ==(covariant LocationEntity other) {
+    if (identical(this, other)) return true;
+
+    return other.name == name && other.lat == lat && other.lon == lon;
+  }
+
+  @override
+  int get hashCode => name.hashCode ^ lat.hashCode ^ lon.hashCode;
 }
